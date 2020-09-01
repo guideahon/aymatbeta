@@ -10,6 +10,7 @@ const unblocker = Unblocker({});
 const express = require("express");
 const app = express();
 const httpProxy = require("http-proxy");
+const cors = require('cors');
 // var proxy = httpProxy.createProxyServer({});
 
 function miniCPU() {
@@ -22,7 +23,6 @@ function miniCPU() {
 // this must be one of the first app.use() calls and must not be on a subdirectory to work properly
 app.use(new Unblocker({ prefix: "/@/" }));
 
-const cors = require('cors');
 app.use(cors());
 
 app.get("/@/", function(req, res) {
