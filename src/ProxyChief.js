@@ -23,6 +23,12 @@ function miniCPU() {
 // this must be one of the first app.use() calls and must not be on a subdirectory to work properly
 app.use(new Unblocker({ prefix: "/@/" }));
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 app.use(cors());
 
 app.get("/@/", function(req, res) {
